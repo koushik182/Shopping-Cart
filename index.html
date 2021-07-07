@@ -65,14 +65,14 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
-                        <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$<span id="subTotal">1,278</span></h5>
+                        <h5>$<span id="tax">0</span></h5>
+                        <h5>$<span id="total">1,278</span></h5>
                      </div>
                   </div>
                </div>
                <div class="col-md-12 pt-4 pb-4">
-                  <button type="button" class="btn btn-success check-out">Check Out</button>
+                  <button type="button" class="btn btn-success check-out" id="checkOut">Check Out</button>
                </div>
             </div>
          </div>
@@ -100,6 +100,24 @@
          const inputNumber=parseInt(inputValue);
          return inputNumber;
       }
+      function totalCount(){
+         let firstInput = getInputNumber("firstInput");
+         let secInput = getInputNumber("secInput");
+         let taxValue= document.getElementById("tax").innerText;
+         let tax=parseInt(taxValue);
+
+         let subTotalPrice = firstInput * 1219 + secInput * 59;
+         document.getElementById("subTotal").innerText=subTotalPrice;
+         let total= subTotalPrice + tax;
+         document.getElementById("total").innerText=total;
+      }
+
+
+
+      const checkOut = document.getElementById("checkOut");
+      checkOut.addEventListener("click",function(){
+         totalCount();
+      })
 
 
       const firstMinusBtn = document.getElementById("firstMinusBtn");
@@ -110,8 +128,6 @@
 
          let total=caseDecrease(firstInput)*1219;
          document.getElementById("firstPhoneValue").innerText=total;
-
-         
       })
       const firstPlusBtn = document.getElementById("firstPlusBtn");
       firstPlusBtn.addEventListener("click",function(){
@@ -121,8 +137,6 @@
 
          const total=caseIncrease(firstInput)*1219;
          document.getElementById("firstPhoneValue").innerText=total;
-
-         
       })
 
 
@@ -135,8 +149,6 @@
 
          let total=caseDecrease(secInput)*59;
          document.getElementById("secPhoneValue").innerText=total;
-
-         
       })
       const secPlusBtn = document.getElementById("secPlusBtn");
       secPlusBtn.addEventListener("click",function(){
@@ -146,8 +158,6 @@
 
          const total=caseIncrease(secInput)*59;
          document.getElementById("secPhoneValue").innerText=total;
-
-         
       })
       
      
